@@ -1,35 +1,36 @@
-/******************************************************************************
+import java.util.*;
+import java.lang.*;
+import java.io.*;
 
-                            Online Java Compiler.
-                Code, Compile, Run and Debug java program online.
-Write your code in this editor and press "Run" button to execute it.
-
-*******************************************************************************/
-// package eddybeyond;
 public class Main
 {
     private static boolean isNumeric(String cadena){
     	try {
     		Integer.parseInt(cadena);
     		return true;
-    	} catch (NumberFormatException nfe){
+    	} catch (NumberFormatException nfe) {
     		return false;
     	}
     }  
 	public static void main(String[] args) {
-	    String numero = "1234";
-        String base = "325";
+	    String numero = "4544";
+        String base = "3.2";
         boolean bandera1 = isNumeric(numero);
         boolean bandera2 = isNumeric(base);
-        System.out.println(bandera1);
-        System.out.println(bandera2);
         int elnumero;
         int labase;
+        int largonumero = numero.length();
+        int largobase = base.length();
         if (bandera1 == true && bandera2 == true) {
             elnumero = Integer.parseInt(numero);
             labase =Integer.parseInt(base);
             if (1 < labase && labase < 33) {
-                System.out.println(convertir(elnumero,labase));
+                if (elnumero < 0) {
+                    int numeropositivo = elnumero * -1;
+                    System.out.println("-" + convertir(numeropositivo,labase));
+                } else {
+                    System.out.println(convertir(elnumero,labase));
+                }
             } else if (labase < 1) {
                 System.out.println("La base no puede ser menor a 1");
             }
@@ -37,13 +38,35 @@ public class Main
                 System.out.println("La base paso de su limite permitido -32");
             }
         } else if (bandera1 == false && bandera2 == true) {
-            System.out.println("Operacion detenida, debido a que el numero contiene letras");
+            if (largonumero > 0) {
+                System.out.println("Operacion detenida, debido a que el numero contiene letras o caracteres");
+                if (numero.contains(".")) {
+    	            System.out.println("No es posible procesar decimales, solo enteros");
+    	        }
+            } else {
+                System.out.println("Operacion detenida, no hay dato en numero");
+            }
         }
         else if (bandera1 == true && bandera2 == false) {
-            System.out.println("Operacion detenida, debido a que la base contiene letras");
+            if (largobase > 0) {
+                System.out.println("Operacion detenida, debido a que la base contiene letras o caracteres");
+                if (numero.contains(".")) {
+    	            System.out.println("No hay bases decimales, solo enteros");
+    	        }
+            } else {
+                System.out.println("Operacion detenida, no hay dato en base");
+            }
         }
         else if (bandera1 == false && bandera2 == false) {
-            System.out.println("Operacion detenida, debido a que ambos contienen letras");
+            if (largonumero > 0 && largobase > 0) {
+            System.out.println("Operacion detenida, debido a que ambos contienen letras o caracteres");
+            } else if (largonumero == 0 && largobase > 0) {
+                System.out.println("Operacion detenida, no hay dato en numero");
+            } else if (largonumero > 0 && largobase == 0) {
+                System.out.println("Operacion detenida, no hay dato en base");
+            } else if (largonumero == 0 && largobase == 0) {
+                System.out.println("Operacion detenida, no hay dato en ambos");
+            }
         }
 	}
 	private static String convertir(int n, int b){
