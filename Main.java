@@ -24,7 +24,7 @@ public class Main
         if (bandera1 == true && bandera2 == true) {
             elnumero = Integer.parseInt(numero);
             labase =Integer.parseInt(base);
-            if (1 < labase && labase < 33) {
+            if (1 < labase && labase < 37) {
                 if (elnumero < 0) {
                     int numeropositivo = elnumero * -1;
                     System.out.println("-" + convertir(numeropositivo,labase));
@@ -34,8 +34,8 @@ public class Main
             } else if (labase < 1) {
                 System.out.println("La base no puede ser menor a 1");
             }
-            else if (labase > 32) {
-                System.out.println("La base paso de su limite permitido -32");
+            else if (labase > 36) {
+                System.out.println("La base paso de su limite permitido - 36");
             }
         } else if (bandera1 == false && bandera2 == true) {
             if (largonumero > 0) {
